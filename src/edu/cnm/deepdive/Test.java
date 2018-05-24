@@ -1,16 +1,15 @@
 /**Fisher-Yates-Kannuth Shuffle
  * 
  */
-package edu.cnm.depdive;
+package edu.cnm.deepdive;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * @author Justin Torrez
  *
  */
-public class Shuffle {
+public class Test {
 
   /**
    * @param args
@@ -18,7 +17,7 @@ public class Shuffle {
   public static void main(String[] args) {
     int[] deck = createDeck(100);
     reveal(deck); 
-    shuffle(deck);
+    ArrayShuffles.shuffle(deck);
     reveal(deck);
   }
 
@@ -28,16 +27,6 @@ public class Shuffle {
      deck[i] = i;
    }
    return deck;
-  }
-  
-  private static void shuffle(int[] deck) {
-    Random rng = new Random();
-    for (int i = deck.length -1; i > 0; i--) {
-      int source = rng.nextInt(i + 1);
-      int temp = deck[i]; 
-      deck[i] = deck[source];
-      deck[source] = temp;
-    }
   }
   
   private static void reveal(int[] deck ) {
