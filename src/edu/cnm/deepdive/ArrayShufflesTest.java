@@ -29,13 +29,11 @@ class ArrayShufflesTest {
   }
 
   private String[] names(String filename) throws IOException {
-    InputStream input = null;
-    Reader reader = null;
-    BufferedReader buffer = null;
-    try {
-      input = new FileInputStream(filename);
-      reader = new InputStreamReader(input);
-      buffer = new BufferedReader(reader);
+    try (
+        InputStream input = new FileInputStream(filename);
+        Reader reader = new InputStreamReader(input);
+        BufferedReader buffer = new BufferedReader(reader);
+    ) {
       List<String> names = new LinkedList<>();
       for (String name = buffer.readLine(); name != null; name = buffer.readLine()) {
         name = name.trim();
@@ -44,16 +42,6 @@ class ArrayShufflesTest {
         }
       }
       return names.toArray(new String[names.size()]);
-    } finally {
-      if (buffer != null) {
-        buffer.close();
-      }
-      if (reader != null) {
-        reader.close();
-      }
-      if (input != null) {
-        input.close();
-      }
-    }
+    } 
   }
 }
